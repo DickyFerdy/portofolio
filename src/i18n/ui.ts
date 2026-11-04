@@ -31,9 +31,9 @@ export const ui = {
     'projects.repo': 'Repositori',
     'about.title': 'Tentang Saya',
     'about.p1':
-      'Saya seorang Fullstack Developer dan AI Engineer dengan fokus pada keandalan arsitektur perangkat lunak, integrasi model AI yang efisien, dan pengalaman pengguna yang cepat.',
+      'Saya adalah mahasiswa Teknik Informatika di UPN "Veteran" Jawa Timur dengan fokus utama pada Full-Stack Development dan Artificial Intelligence. Berbekal ketertarikan mendalam di bidang teknologi, saya aktif mengeksplorasi bagaimana integrasi algoritma cerdas dan rekayasa perangkat lunak modern dapat menyelesaikan berbagai masalah kompleks.',
     'about.p2':
-      'Berpengalaman membangun aplikasi end-to-end: mulai dari pemodelan basis data, API backend yang tangguh, hingga antarmuka web modern yang aksesibel dan ringan.',
+      'Saya berfokus pada pengembangan aplikasi secara end-to-end—mulai dari perancangan basis data yang tangguh, pemrosesan backend API, hingga antarmuka frontend yang cepat dan intuitif. Tujuan saya adalah mengintegrasikan model AI secara efisien ke dalam aplikasi web berkinerja tinggi yang memberikan pengalaman pengguna terbaik.',
     'about.tech_title': 'Teknologi & Alat',
     'contact.title': 'Hubungi Saya',
     'contact.desc':
@@ -68,9 +68,9 @@ export const ui = {
     'projects.repo': 'Repository',
     'about.title': 'About Me',
     'about.p1':
-      'I am a Fullstack Developer and AI Engineer specializing in resilient software architecture, efficient AI model integration, and fast, accessible user experiences.',
+      'I am an Informatics student at UPN "Veteran" Jawa Timur with a strong focus on Full-Stack Development and Artificial Intelligence. Driven by a passion for technology, I continuously explore how smart algorithms and modern software engineering can work together to solve complex problems.',
     'about.p2':
-      'Experienced in building end-to-end applications: from database modeling and robust backend APIs to modern web frontends that are lightweight and accessible.',
+      'I specialize in building end-to-end applications—from robust database modeling and scalable backend APIs to lightweight, accessible frontends. My goal is to seamlessly integrate efficient AI models into high-performance web applications that deliver exceptional user experiences.',
     'about.tech_title': 'Technologies & Tools',
     'contact.title': 'Get In Touch',
     'contact.desc':
