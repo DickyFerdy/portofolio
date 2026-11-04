@@ -103,9 +103,10 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
 
     <!-- Script pengalih tema ringan (< 1 KB) -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
+      function setupThemeToggle() {
         const themeBtn = document.getElementById('theme-toggle-btn');
-        if (!themeBtn) return;
+        if (!themeBtn || themeBtn.dataset.themeBound) return;
+        themeBtn.dataset.themeBound = 'true';
 
         themeBtn.addEventListener('click', () => {
           const isDark = document.documentElement.classList.toggle('dark');
@@ -115,7 +116,13 @@ const ogImageUrl = `${siteUrl}/og-image.png`;
             /* ignore */
           }
         });
-      });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupThemeToggle);
+      } else {
+        setupThemeToggle();
+      }
     </script>
   </body>
 </html>
