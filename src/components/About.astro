@@ -1,0 +1,93 @@
+---
+import { type Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const skillGroups = [
+  {
+    category: 'Fullstack & Backend',
+    skills: [
+      'TypeScript',
+      'Node.js',
+      'Go',
+      'Python',
+      'FastAPI',
+      'PostgreSQL',
+      'Redis',
+    ],
+  },
+  {
+    category: 'Frontend & UI',
+    skills: ['Astro', 'Next.js', 'Tailwind CSS', 'HTML5/Accessible DOM'],
+  },
+  {
+    category: 'AI & Data Engineering',
+    skills: [
+      'LangChain',
+      'LlamaIndex',
+      'RAG Architecture',
+      'Vector DBs (Chroma/pgvector)',
+      'OpenAI API',
+    ],
+  },
+  {
+    category: 'DevOps & Tools',
+    skills: ['Docker', 'Git', 'Vercel', 'Linux', 'CI/CD Pipelines'],
+  },
+];
+---
+
+<section
+  id="tentang"
+  class="py-16 sm:py-24 border-b border-border scroll-mt-16"
+>
+  <div class="space-y-8">
+    <div class="space-y-2">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-text">
+        {t('about.title')}
+      </h2>
+    </div>
+
+    <!-- Narasi Profil (2-3 kalimat ringkas) -->
+    <div
+      class="space-y-4 text-muted text-base sm:text-lg leading-relaxed max-w-prose"
+    >
+      <p>{t('about.p1')}</p>
+      <p>{t('about.p2')}</p>
+    </div>
+
+    <!-- Tech Stack (Label Monospace tanpa bar persentase) -->
+    <div class="space-y-4 pt-4">
+      <h3
+        class="text-sm font-mono uppercase tracking-wider text-muted font-semibold"
+      >
+        {t('about.tech_title')}
+      </h3>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          skillGroups.map((group) => (
+            <div class="p-4 rounded-card bg-surface border border-border space-y-2">
+              <h4 class="text-xs font-mono font-medium text-muted">
+                {group.category}
+              </h4>
+              <div class="flex flex-wrap gap-1.5">
+                {group.skills.map((skill) => (
+                  <span class="inline-flex items-center font-mono text-xs px-2.5 py-1 rounded-full bg-border/40 text-text border border-border/50">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import { type Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<footer class="w-full border-t border-border mt-auto py-8">
+  <div
+    class="max-w-container mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted"
+  >
+    <p>{t('footer.copyright')}</p>
+    <div class="flex items-center gap-4">
+      <a
+        href="#main-content"
+        class="hover:text-text transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
+      >
+        ↑ Top
+      </a>
+    </div>
+  </div>
+</footer>

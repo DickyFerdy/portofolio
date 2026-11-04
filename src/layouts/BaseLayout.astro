@@ -1,0 +1,121 @@
+---
+import '@/styles/global.css';
+import { type Lang } from '@/i18n/ui';
+import { useTranslations } from '@/i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const { lang, title, description, canonicalPath = `/${lang}` } = Astro.props;
+const t = useTranslations(lang);
+
+const pageTitle = title || t('meta.title');
+const pageDescription = description || t('meta.description');
+const siteUrl = 'https://dickyferdyansyah.vercel.app';
+const fullCanonicalUrl = `${siteUrl}${canonicalPath}`;
+const ogImageUrl = `${siteUrl}/og-image.png`;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={fullCanonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/favicon.png" />
+
+    <!-- Open Graph / Meta Sosial -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={fullCanonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Alternate hreflang -->
+    <link rel="alternate" hreflang="id" href={`${siteUrl}/id/`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/id/`} />
+
+    <!-- Self-hosted font preconnect / Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme initialization (Inline script to prevent FOUC) -->
+    <script is:inline>
+      (function () {
+        try {
+          const storedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          ).matches;
+          if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
+  </head>
+  <body
+    class="bg-bg text-text min-h-screen flex flex-col font-sans selection:bg-accent/20 selection:text-text"
+  >
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-btn focus:ring-2 focus:ring-accent focus:ring-offset-2 font-medium"
+    >
+      {t('accessibility.skip_to_content')}
+    </a>
+
+    <slot name="header" />
+
+    <main
+      id="main-content"
+      class="flex-1 w-full max-w-container mx-auto px-4 sm:px-6"
+    >
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+    <!-- Script pengalih tema ringan (< 1 KB) -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        if (!themeBtn) return;
+
+        themeBtn.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark');
+          try {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          } catch (e) {
+            /* ignore */
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
