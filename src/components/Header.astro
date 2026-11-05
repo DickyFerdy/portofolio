@@ -66,9 +66,10 @@ const navLinks = [
         <!-- Pengalih Tema -->
         <button
           id="theme-toggle-btn"
+          data-theme-toggle
           type="button"
           aria-label={t('nav.theme_toggle')}
-          class="p-2 rounded-btn border border-border text-muted hover:text-text hover:border-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          class="p-2 rounded-btn border border-border text-muted hover:text-text hover:border-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer"
         >
           <!-- Ikon Matahari (tampil di mode gelap) -->
           <svg
@@ -118,9 +119,10 @@ const navLinks = [
       <!-- Pengalih Tema mobile -->
       <button
         id="theme-toggle-btn-mobile"
+        data-theme-toggle
         type="button"
         aria-label={t('nav.theme_toggle')}
-        class="p-2 rounded-btn border border-border text-muted hover:text-text hover:border-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        class="p-2 rounded-btn border border-border text-muted hover:text-text hover:border-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer"
       >
         <svg
           class="w-4 h-4 hidden dark:block"
@@ -248,19 +250,5 @@ const navLinks = [
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 640) toggleMenu(false);
     });
-
-    // Mobile theme toggle — sync dengan tombol desktop
-    const mobileThemeBtn = document.getElementById('theme-toggle-btn-mobile');
-    if (mobileThemeBtn && !mobileThemeBtn.dataset.themeBound) {
-      mobileThemeBtn.dataset.themeBound = 'true';
-      mobileThemeBtn.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        try {
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        } catch (e) {
-          /* ignore */
-        }
-      });
-    }
   })();
 </script>

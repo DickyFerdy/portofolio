@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  .light {
     --bg: #fafaf9;
     --surface: #ffffff;
     --border: #e7e5e4;
