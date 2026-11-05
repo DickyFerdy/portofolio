@@ -14,6 +14,8 @@ export const ui = {
     'nav.contact': 'Kontak',
     'nav.theme_toggle': 'Ganti tema (terang/gelap)',
     'nav.lang_toggle': 'Switch to English',
+    'nav.menu_open': 'Buka menu navigasi',
+    'nav.menu_close': 'Tutup menu navigasi',
     'meta.title': 'Moch. Dicky Ferdyansyah — Fullstack Developer & AI Engineer',
     'meta.description':
       'Portofolio Moch. Dicky Ferdyansyah: Fullstack Developer dan AI Engineer. Menampilkan karya terbaik, kedalaman teknis, dan kontak.',
@@ -29,6 +31,8 @@ export const ui = {
       'Maksimal 4 proyek terbaik yang berfokus pada arsitektur bersih dan dampak terukur.',
     'projects.demo': 'Demo',
     'projects.repo': 'Repositori',
+    'projects.impact_label': 'Dampak',
+    'projects.image_placeholder': 'Tangkapan layar proyek belum tersedia',
     'about.title': 'Tentang Saya',
     'about.p1':
       'Saya adalah mahasiswa Teknik Informatika di UPN "Veteran" Jawa Timur dengan fokus utama pada Full-Stack Development dan Artificial Intelligence. Berbekal ketertarikan mendalam di bidang teknologi, saya aktif mengeksplorasi bagaimana integrasi algoritma cerdas dan rekayasa perangkat lunak modern dapat menyelesaikan berbagai masalah kompleks.',
@@ -39,10 +43,12 @@ export const ui = {
     'contact.desc':
       'Tertarik berdiskusi seputar peluang kerja, proyek kolaborasi, atau rekayasa AI? Silakan hubungi saya melalui kanal di bawah ini.',
     'contact.email_btn': 'Kirim Email',
-    'contact.github_btn': 'Profil GitHub',
-    'contact.linkedin_btn': 'Profil LinkedIn',
-    'footer.copyright':
-      '© 2026 Moch. Dicky Ferdyansyah. Dibuat statis dengan Astro & Tailwind CSS.',
+    'contact.email_via': 'atau langsung via',
+    'contact.github_btn': 'GitHub',
+    'contact.linkedin_btn': 'LinkedIn',
+    'footer.copyright': '© 2026 Moch. Dicky Ferdyansyah.',
+    'footer.built_with': 'Dibangun dengan Astro & Tailwind CSS.',
+    'footer.back_top': 'Kembali ke atas',
   },
   en: {
     'accessibility.skip_to_content': 'Skip to main content',
@@ -51,6 +57,8 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.theme_toggle': 'Toggle theme (light/dark)',
     'nav.lang_toggle': 'Beralih ke Bahasa Indonesia',
+    'nav.menu_open': 'Open navigation menu',
+    'nav.menu_close': 'Close navigation menu',
     'meta.title': 'Moch. Dicky Ferdyansyah — Fullstack Developer & AI Engineer',
     'meta.description':
       'Portfolio of Moch. Dicky Ferdyansyah: Fullstack Developer and AI Engineer. Highlighting selected projects, technical depth, and contact.',
@@ -66,6 +74,8 @@ export const ui = {
       'Curated selection of top projects focused on clean architecture and measurable impact.',
     'projects.demo': 'Demo',
     'projects.repo': 'Repository',
+    'projects.impact_label': 'Impact',
+    'projects.image_placeholder': 'Project screenshot not yet available',
     'about.title': 'About Me',
     'about.p1':
       'I am an Informatics student at UPN "Veteran" Jawa Timur with a strong focus on Full-Stack Development and Artificial Intelligence. Driven by a passion for technology, I continuously explore how smart algorithms and modern software engineering can work together to solve complex problems.',
@@ -76,10 +86,12 @@ export const ui = {
     'contact.desc':
       'Interested in collaboration opportunities, full-time roles, or discussing AI engineering? Feel free to reach out through any channel below.',
     'contact.email_btn': 'Send Email',
-    'contact.github_btn': 'GitHub Profile',
-    'contact.linkedin_btn': 'LinkedIn Profile',
-    'footer.copyright':
-      '© 2026 Moch. Dicky Ferdyansyah. Statically built with Astro & Tailwind CSS.',
+    'contact.email_via': 'or directly via',
+    'contact.github_btn': 'GitHub',
+    'contact.linkedin_btn': 'LinkedIn',
+    'footer.copyright': '© 2026 Moch. Dicky Ferdyansyah.',
+    'footer.built_with': 'Built with Astro & Tailwind CSS.',
+    'footer.back_top': 'Back to top',
   },
 } as const;
 

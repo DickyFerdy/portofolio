@@ -1,6 +1,6 @@
 # PRD — Personal Portfolio Website
 
-> Status: Draft v1 · Pemilik: Moch. Dicky Ferdyansyah · Terakhir diperbarui: 2026-11-04
+> Status: Draft v2 · Pemilik: Moch. Dicky Ferdyansyah · Terakhir diperbarui: 2026-11-05
 
 ## 1. Ringkasan
 
@@ -34,17 +34,18 @@ Banyak pengunjung membuka dari **ponsel**, jadi mobile-first.
 
 ## 4. Kebutuhan Fungsional
 
-| ID  | Kebutuhan                                                           | Prioritas |
-| --- | ------------------------------------------------------------------- | --------- |
-| F1  | Hero: nama, peran, satu kalimat nilai, tombol GitHub/LinkedIn/CV    | Must      |
-| F2  | Bagian Proyek: 3-4 kartu proyek                                     | Must      |
-| F3  | Bagian Tentang: 2-3 kalimat plus daftar tech stack                  | Must      |
-| F4  | Bagian Kontak: email dan tautan profil                              | Must      |
-| F5  | Pergantian bahasa ID/EN (URL `/id` dan `/en`)                       | Must      |
-| F6  | Mode terang/gelap, mengikuti preferensi sistem, bisa diganti manual | Should    |
-| F7  | Tombol unduh CV (PDF)                                               | Should    |
-| F8  | Metadata SEO dan Open Graph image                                   | Should    |
-| F9  | Analitik ringan yang menjaga privasi (opsional)                     | Could     |
+| ID  | Kebutuhan                                                           | Prioritas | Status                    |
+| --- | ------------------------------------------------------------------- | --------- | ------------------------- |
+| F1  | Hero: nama, peran, satu kalimat nilai, tombol GitHub/LinkedIn/CV    | Must      | ✅ Done                   |
+| F2  | Bagian Proyek: 3-4 kartu proyek                                     | Must      | ✅ Done (placeholder)     |
+| F3  | Bagian Tentang: 2-3 kalimat plus daftar tech stack                  | Must      | ✅ Done                   |
+| F4  | Bagian Kontak: email dan tautan profil                              | Must      | ✅ Done                   |
+| F5  | Pergantian bahasa ID/EN (URL `/id` dan `/en`)                       | Must      | ✅ Done                   |
+| F6  | Mode terang/gelap, mengikuti preferensi sistem, bisa diganti manual | Should    | ✅ Done                   |
+| F7  | Tombol unduh CV (PDF)                                               | Should    | ✅ Done (placeholder PDF) |
+| F8  | Metadata SEO dan Open Graph image                                   | Should    | ✅ Done (placeholder OG)  |
+| F9  | Navigasi mobile (hamburger menu)                                    | Should    | ✅ Done                   |
+| F10 | Analitik ringan yang menjaga privasi (opsional)                     | Could     | ⬜ Belum                  |
 
 ### Isi setiap kartu proyek
 
@@ -52,7 +53,7 @@ Banyak pengunjung membuka dari **ponsel**, jadi mobile-first.
 - Peran dan tech stack
 - Hasil/dampak (gunakan angka bila ada)
 - Tautan demo dan repo
-- Satu screenshot
+- Satu screenshot (atau placeholder visual bila belum tersedia)
 
 ## 5. Kebutuhan Non-Fungsional
 
@@ -66,6 +67,8 @@ Banyak pengunjung membuka dari **ponsel**, jadi mobile-first.
 
 Satu halaman dengan urutan: **Hero → Proyek → Tentang → Kontak**. Navigasi berupa anchor di header sederhana, ditambah pengalih bahasa dan tema.
 
+Dark mode: dua lapisan saling melengkapi — CSS media query (tanpa JS) dan JS-based class toggle (dengan `localStorage`).
+
 ## 7. Metrik Keberhasilan
 
 - Teman non-teknis dapat menjawab "orang ini kerja di bidang apa dan apa karya terbaiknya?" setelah 30 detik.
@@ -75,19 +78,26 @@ Satu halaman dengan urutan: **Hero → Proyek → Tentang → Kontak**. Navigasi
 
 ## 8. Milestone
 
-1. **M1 — Fondasi**: setup Astro, Tailwind, i18n, tema, layout.
-2. **M2 — Konten**: tulis teks ID/EN, pilih proyek, siapkan screenshot dan CV.
-3. **M3 — Polish**: aksesibilitas, SEO, OG image, uji Lighthouse.
-4. **M4 — Rilis**: domain sendiri, deploy, cek semua tautan.
+| Milestone    | Deskripsi                                                       | Status                                                 |
+| ------------ | --------------------------------------------------------------- | ------------------------------------------------------ |
+| M1 — Fondasi | Setup Astro, Tailwind, i18n, tema, layout, mobile nav           | ✅ Selesai                                             |
+| M2 — Konten  | Tulis teks ID/EN, pilih proyek, siapkan screenshot nyata dan CV | 🔄 Sebagian (teks done, gambar & CV masih placeholder) |
+| M3 — Polish  | Aksesibilitas, SEO, OG image nyata, uji Lighthouse              | ⬜ Belum                                               |
+| M4 — Rilis   | Domain sendiri, deploy ke Vercel, cek semua tautan              | ⬜ Belum                                               |
 
 ## 9. Risiko
 
-| Risiko                                            | Mitigasi                           |
-| ------------------------------------------------- | ---------------------------------- |
-| Terlalu banyak proyek sehingga situs terasa penuh | Batasi 3-4 proyek                  |
-| Terjemahan tidak konsisten                        | Semua teks di satu file per bahasa |
-| Konten usang                                      | Tinjau tiap 3-6 bulan              |
+| Risiko                                             | Mitigasi                                                   |
+| -------------------------------------------------- | ---------------------------------------------------------- |
+| Terlalu banyak proyek sehingga situs terasa penuh  | Batasi 3-4 proyek                                          |
+| Terjemahan tidak konsisten                         | Semua teks di satu file per bahasa (`i18n/ui.ts`)          |
+| Konten usang                                       | Tinjau tiap 3-6 bulan                                      |
+| Gambar proyek placeholder terus dipakai saat rilis | Checklist rilis wajib verifikasi semua placeholder diganti |
 
 ## 10. Pertanyaan Terbuka
 
-- Proyek mana yang akan ditampilkan?
+- Proyek mana yang akan ditampilkan? (maks. 4, saat ini 3 placeholder)
+- Screenshot nyata sudah disiapkan?
+- CV PDF sudah diperbarui?
+- OG image nyata akan dibuat atau tetap placeholder?
+- Apakah analitik privasi-first (Plausible/Fathom) akan ditambahkan di M3?

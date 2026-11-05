@@ -13,20 +13,22 @@ Gaya: **minimalis, terang/gelap, banyak ruang kosong.** Tujuannya agar pengunjun
 
 Satu warna aksen, sisanya netral. Semua didefinisikan sebagai token CSS.
 
-| Token       | Terang    | Gelap     | Pemakaian                   |
-| ----------- | --------- | --------- | --------------------------- |
-| `--bg`      | `#FAFAF9` | `#0C0C0D` | Latar halaman               |
-| `--surface` | `#FFFFFF` | `#161618` | Kartu                       |
-| `--border`  | `#E7E5E4` | `#27272A` | Garis tipis                 |
-| `--text`    | `#1C1917` | `#F4F4F5` | Teks utama                  |
-| `--muted`   | `#57534E` | `#A1A1AA` | Teks sekunder               |
-| `--accent`  | `#2563EB` | `#60A5FA` | Tautan, tombol utama, fokus |
+| Token         | Terang    | Gelap     | Pemakaian                        |
+| ------------- | --------- | --------- | -------------------------------- |
+| `--bg`        | `#FAFAF9` | `#0C0C0D` | Latar halaman                    |
+| `--surface`   | `#FFFFFF` | `#161618` | Kartu                            |
+| `--border`    | `#E7E5E4` | `#27272A` | Garis tipis                      |
+| `--text`      | `#1C1917` | `#F4F4F5` | Teks utama                       |
+| `--muted`     | `#57534E` | `#A1A1AA` | Teks sekunder                    |
+| `--accent`    | `#2563EB` | `#60A5FA` | Tautan, tombol utama, fokus      |
+| `--dot-color` | `#D6D3D1` | `#27272A` | Titik dot-grid dekoratif di Hero |
 
 Aturan:
 
 - Kontras teks minimal WCAG AA (4.5:1 untuk teks biasa).
 - Aksen dipakai hemat: tombol utama, tautan, dan indikator fokus.
 - Mode gelap mengikuti `prefers-color-scheme`, bisa diganti manual dan disimpan di `localStorage`.
+- Token `--dot-color` hanya dipakai untuk dot-grid di section Hero.
 
 ## 3. Tipografi
 
@@ -60,10 +62,10 @@ Lebar baris teks maksimal ±65 karakter (`max-w-prose`).
 ┌──────────────────────────────┐
 │ Header: nama · Proyek · Tentang · Kontak · [ID/EN] [tema] │
 ├──────────────────────────────┤
-│ HERO                         │
-│ Nama                         │
-│ Fullstack Developer · AI     │
-│ Satu kalimat nilai           │
+│ HERO (dot-grid bg, py-20/32) │
+│ Role badge (monospace)        │
+│ Nama (H1, line-break alami)  │
+│ Tagline                       │
 │ [GitHub] [LinkedIn] [CV]     │
 ├──────────────────────────────┤
 │ PROYEK (3-4 kartu)           │
@@ -72,21 +74,23 @@ Lebar baris teks maksimal ±65 karakter (`max-w-prose`).
 ├──────────────────────────────┤
 │ KONTAK (email + tautan)      │
 └──────────────────────────────┘
+│ FOOTER (copyright + sosial + back to top) │
 ```
 
 ## 6. Komponen
 
 **Tombol**
 
-- Utama: latar `--accent`, teks putih, tinggi 44px.
+- Utama: latar `--accent`, teks putih, tinggi 44px. Ikon sosial (GitHub, LinkedIn) menggunakan SVG branded bukan ikon generik.
 - Sekunder: garis `--border`, teks `--text`.
 - Fokus: ring 2px `--accent` dengan offset 2px.
 
 **Kartu proyek**
 
 - Latar `--surface`, garis `--border`, radius 12px, padding 20-24px.
-- Isi (berurutan): screenshot tunggal, judul, satu kalimat masalah, hasil/dampak, label stack, tautan Demo dan Repo.
+- Isi (berurutan): screenshot tunggal (atau placeholder SVG jika belum ada), judul, satu kalimat masalah, hasil/dampak (via i18n), label stack, tautan Demo dan Repo.
 - Hover: garis berubah ke `--accent`; tanpa lompatan atau zoom.
+- **Placeholder gambar**: bila screenshot belum tersedia, tampilkan SVG ikon gambar dengan teks deskriptif (dari `i18n/ui.ts`, key `projects.image_placeholder`). Jangan tampilkan gambar rusak.
 
 **Label stack**
 
@@ -94,18 +98,32 @@ Lebar baris teks maksimal ±65 karakter (`max-w-prose`).
 
 **Header**
 
-- Tinggi 56-64px, lengket di atas, latar `--bg` dengan garis bawah tipis. Di mobile, menu sederhana (tanpa animasi rumit).
+- Tinggi 56-64px, lengket di atas, latar `--bg` dengan garis bawah tipis.
+- Desktop: nav link + pengalih bahasa + pengalih tema.
+- Mobile (< 640px): nama + tombol bahasa + tombol tema + tombol hamburger. Menu dropdown muncul di bawah header, tanpa animasi selain show/hide.
+
+**Footer**
+
+- Dua kolom (mobile: satu kolom tengah): kiri = copyright + "built with", kanan = ikon GitHub + ikon LinkedIn + separator + "back to top".
+- Ikon sosial di footer: ukuran 16px, warna `--muted`, hover ke `--text`.
+
+**Kontak**
+
+- Tombol utama: "Kirim Email" / "Send Email" tanpa alamat email di dalam teks tombol.
+- Alamat email ditampilkan terpisah sebagai teks/tautan di bawah baris tombol.
 
 ## 7. Gerak (Motion)
 
 - Hanya transisi halus 150-200ms untuk warna, garis, dan opasitas.
 - Tidak ada animasi saat scroll, parallax, atau loading screen.
+- Dot-grid di Hero: statis, CSS-only, tanpa animasi.
 - Hormati `prefers-reduced-motion`: matikan semua transisi.
 
 ## 8. Gambar
 
 - Satu screenshot per proyek, rasio 16:9, format WebP/AVIF.
 - Wajib punya `alt`, `width`, `height`, dan `loading="lazy"`.
+- Jika screenshot belum ada, gunakan placeholder SVG (lihat aturan Kartu Proyek).
 - OG image 1200×630px: nama, peran, latar polos.
 
 ## 9. Aksesibilitas
@@ -115,6 +133,7 @@ Lebar baris teks maksimal ±65 karakter (`max-w-prose`).
 - Target sentuh minimal 44×44px.
 - Tautan "Lewati ke konten" di awal halaman.
 - Atribut `lang` sesuai bahasa halaman (`id` / `en`).
+- Hamburger button mobile: `aria-expanded`, `aria-controls`, `aria-label` wajib ada.
 
 ## 10. Yang Dihindari
 
@@ -123,6 +142,7 @@ Lebar baris teks maksimal ±65 karakter (`max-w-prose`).
 - Galeri screenshot besar
 - Lebih dari satu warna aksen
 - Teks di atas gambar yang mengurangi keterbacaan
+- Alamat email di dalam teks tombol
 
 ## 11. Daftar Periksa Sebelum Rilis
 
@@ -132,3 +152,7 @@ Lebar baris teks maksimal ±65 karakter (`max-w-prose`).
 - [ ] Semua tautan berfungsi
 - [ ] Teks ID dan EN konsisten
 - [ ] OG image dan favicon terpasang
+- [ ] Screenshot proyek nyata sudah menggantikan placeholder
+- [ ] CV PDF sudah diisi dan diperbarui
+- [ ] Mobile nav berfungsi di semua breakpoint
+- [ ] Dark mode otomatis dari preferensi sistem berjalan (tanpa JS pun CSS sudah merespons)

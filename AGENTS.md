@@ -36,9 +36,13 @@ Jalankan `pnpm check && pnpm lint && pnpm build` sebelum menyatakan tugas selesa
 src/
 ├── components/     # Komponen Astro (Hero, ProjectCard, Footer, ...)
 ├── content/        # Data proyek (frontmatter + markdown)
+│   └── projects/
+│       ├── id/     # Markdown proyek bahasa Indonesia
+│       └── en/     # Markdown proyek bahasa Inggris
 ├── i18n/           # ui.ts (string UI) dan utils.ts per bahasa
 ├── layouts/        # Layout dasar
 ├── pages/
+│   ├── index.astro         # Redirect ke /id/
 │   ├── id/index.astro
 │   └── en/index.astro
 └── styles/         # global.css, token tema
@@ -47,7 +51,7 @@ public/             # favicon, og-image, cv-id.pdf, cv-en.pdf
 
 ## Aturan Kode
 
-- Gunakan komponen `.astro` untuk semua yang statis. Pakai JavaScript klien **hanya** untuk pengalih tema dan bahasa.
+- Gunakan komponen `.astro` untuk semua yang statis. Pakai JavaScript klien **hanya** untuk pengalih tema, navigasi mobile, dan bahasa.
 - Jangan menambahkan framework UI (React, Vue, dll.) tanpa persetujuan eksplisit.
 - Warna, spasi, dan font diambil dari token di `Design.md`; jangan hardcode nilai acak.
 - Gunakan kelas utilitas Tailwind; hindari CSS kustom kecuali untuk token dan kasus yang tidak bisa dengan utilitas.
@@ -55,6 +59,16 @@ public/             # favicon, og-image, cv-id.pdf, cv-en.pdf
 - Setiap `<img>` wajib punya `alt`, `width`, `height`, dan `loading="lazy"` (kecuali di atas fold).
 - Tautan eksternal: `target="_blank" rel="noopener noreferrer"`.
 - Hormati `prefers-reduced-motion` dan `prefers-color-scheme`.
+
+## Mode Terang/Gelap — Aturan Penting
+
+Implementasi dark mode menggunakan **dua lapisan yang saling melengkapi**, jangan hapus salah satunya:
+
+1. **CSS layer** (`global.css`): `@media (prefers-color-scheme: dark) { html:not(.light):not(.dark) { ... } }` — hanya aktif bila JavaScript belum menambahkan class `.dark` atau `.light`. Ini memastikan preferensi sistem dihormati tanpa JS.
+2. **JS layer** (`BaseLayout.astro` inline script): Membaca `localStorage` pada load, menambahkan class `.dark` ke `<html>` jika diperlukan. Script ini harus **inline di `<head>`** untuk mencegah FOUC.
+3. **Toggle button** (`Header.astro`): Menambah/menghapus class `.dark` dan menyimpan ke `localStorage`.
+
+> **Jangan hapus** `@media (prefers-color-scheme: dark)` dari `global.css`. Selector `html:not(.light):not(.dark)` memastikan CSS tidak bertabrakan dengan class berbasis JS.
 
 ## Konten dan Bahasa
 
@@ -77,6 +91,8 @@ public/             # favicon, og-image, cv-id.pdf, cv-en.pdf
 - Meng-commit secret, file `.env`, atau data pribadi selain yang memang ditampilkan di situs.
 - Mengubah struktur halaman (Hero → Proyek → Tentang → Kontak) tanpa persetujuan.
 - Menambah dependensi besar untuk masalah kecil.
+- Menghapus `@media (prefers-color-scheme: dark)` dari `global.css`.
+- Menulis teks UI langsung di komponen `.astro` — gunakan selalu `i18n/ui.ts`.
 
 ## Alur Kerja
 
